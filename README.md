@@ -1,5 +1,7 @@
 # caderno.
 
+[![Feito com IA: Claude](https://img.shields.io/badge/feito%20com%20IA-Claude-1d4b80?style=flat-square)](#feito-com-ia)
+
 O que ando estudando, lendo, ouvindo, escrevendo e construindo. Em público.
 
 **→ [valentine-os.github.io/caderno](https://valentine-os.github.io/caderno/)**
@@ -44,6 +46,10 @@ e depois `http://localhost:8000/`.
 - Uma conferência automática do `feed.json` antes de cada publicação, e o RSS.
 - Uma extensão de navegador para registrar a página que estou lendo em poucos segundos.
 - Textos longos em arquivos próprios, em `escritos/`.
+
+## Feito com IA
+
+Este site foi desenvolvido com IA. O código, o visual e este README foram escritos pelo Claude, da Anthropic, numa conversa comigo. A ideia, as escolhas e o conteúdo do feed são meus; a programação não.
 
 ## Créditos
 
