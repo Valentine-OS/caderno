@@ -24,7 +24,7 @@ jobs:
   montar:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Conferir o feed.json
         run: python3 tools/conferir.py feed.json
