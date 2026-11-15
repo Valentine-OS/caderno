@@ -33,6 +33,24 @@ Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `
 
 Antes de cada publicação, uma GitHub Action confere o `feed.json` inteiro e gera o [RSS](https://valentine-os.github.io/caderno/feed.xml). Se algo estiver errado, como uma data impossível ou uma vírgula sobrando, nada é publicado, o site continua como estava e a Action diz qual entrada corrigir.
 
+## Escritos longos
+
+Textos meus mais longos não cabem bem numa entrada do `feed.json`. Cada um vira um arquivo `.md` na pasta [`escritos/`](escritos/), com um cabeçalho e o texto embaixo:
+
+```markdown
+---
+titulo: O nome do texto
+data: 2026-11-20
+nota: Uma frase sobre o que ficou.
+---
+
+Primeiro parágrafo.
+
+Segundo parágrafo, depois de uma linha em branco.
+```
+
+Na publicação, eles entram no feed como escritos e abrem inteiros na ficha. O [`_modelo.md`](escritos/_modelo.md) está lá para copiar; arquivos que começam com `_` não vão para o site. Por enquanto o texto é só parágrafos: negrito, itálico e links em Markdown aparecem como foram escritos.
+
 ## Registrar pela extensão
 
 Na pasta [`extension/`](extension/) há uma extensão para Chrome e navegadores parecidos. Na página do artigo, curso ou podcast que acabei de terminar, abro a extensão: ela já traz título, link e fonte, eu escolho o tipo, escrevo o que ficou e clico em Registrar. A extensão grava a entrada no `feed.json` pela API do GitHub, e a publicação segue o caminho normal.
@@ -41,17 +59,13 @@ Para instalar: em `chrome://extensions`, ligue o **Modo do desenvolvedor**, cliq
 
 ## Rodar no computador
 
-A página precisa ser aberta por um servidor local, porque lê o `feed.json` pela rede. Qualquer servidor estático serve, por exemplo:
+A extensão grava direto no GitHub, então antes de mexer no código localmente vale um `git pull`. A página precisa ser aberta por um servidor local, porque lê o `feed.json` pela rede; os escritos longos só aparecem no site publicado, porque são juntados ao feed na publicação. Qualquer servidor estático serve, por exemplo:
 
 ```bash
 python -m http.server
 ```
 
 e depois `http://localhost:8000/`.
-
-## Próximos passos
-
-- Textos longos em arquivos próprios, em `escritos/`.
 
 ## Feito com IA
 
