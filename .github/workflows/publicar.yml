@@ -29,12 +29,17 @@ jobs:
       - name: Conferir o feed.json
         run: python3 tools/conferir.py feed.json
 
+      - name: Juntar os escritos longos
+        run: python3 tools/juntar_escritos.py feed.json escritos _site/feed.json
+
+      - name: Conferir o feed com os escritos
+        run: python3 tools/conferir.py _site/feed.json
+
       - name: Montar o site e gerar o RSS
         run: |
-          mkdir _site
-          cp index.html caderno.css caderno.js feed.json feed.exemplo.json .nojekyll _site/
+          cp index.html caderno.css caderno.js feed.exemplo.json .nojekyll _site/
           cp -r desenhos _site/
-          python3 tools/gerar_rss.py feed.json _site/feed.xml
+          python3 tools/gerar_rss.py _site/feed.json _site/feed.xml
 
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/main'
