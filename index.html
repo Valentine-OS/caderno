@@ -52,7 +52,15 @@
         <g class="chamada" data-tipo="projeto"><line class="fino" x1="434" y1="-54" x2="540" y2="-55"/><circle cx="540" cy="-55" r="8"/><text x="540" y="-52">5</text></g>
       </svg>
       <div class="mono legenda">Fig. 01 · F-16 · vista superior</div>
-      <div class="pecas" id="pecas" role="group" aria-label="Filtrar por tipo"></div>
+      <div class="filtros">
+        <div class="chave" id="chave" role="radiogroup" aria-label="Mostrar o que foi consumido ou criado">
+          <span class="chave-trilho" aria-hidden="true"></span>
+          <button type="button" role="radio" data-grupo="">tudo</button>
+          <button type="button" role="radio" data-grupo="consumido">consumido</button>
+          <button type="button" role="radio" data-grupo="criado">criado</button>
+        </div>
+        <div class="pecas" id="pecas" role="group" aria-label="Filtrar por tipo"></div>
+      </div>
     </aside>
 
     <main id="feed" aria-live="polite"><div class="vazio">Carregando o feed…</div></main>

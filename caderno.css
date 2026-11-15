@@ -91,7 +91,21 @@ svg text.grande { font: 600 11px var(--cond); letter-spacing: .14em; }
 .chamada:hover text, .chamada.ativa text { fill: var(--azul); }
 
 /* lista de peças */
-.pecas { margin-top: 22px; border-top: 1px solid var(--tinta); }
+/* chave de três posições: tudo · consumido · criado */
+.filtros { margin-top: 22px; }
+.chave { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--tinta); margin-bottom: 16px; }
+.chave button { position: relative; z-index: 1; padding: 8px 4px 7px; background: none; border: 0; color: var(--apagado); font: 400 10.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: color .25s; }
+.chave button sup { font-size: 9px; margin-left: 3px; opacity: .7; }
+.chave button:hover { color: var(--tinta); }
+.chave button[aria-checked="true"] { color: var(--azul); }
+.chave button:focus-visible { outline: 1px dashed var(--tinta); outline-offset: -4px; }
+.chave-trilho { position: absolute; top: 0; bottom: 0; left: 0; width: calc(100% / 3); background: var(--tinta); transition: transform .35s cubic-bezier(.45, 0, .2, 1); }
+.chave[data-pos="1"] .chave-trilho { transform: translateX(100%); }
+.chave[data-pos="2"] .chave-trilho { transform: translateX(200%); }
+@media (prefers-reduced-motion: reduce) { .chave-trilho, .chave button { transition: none; } }
+
+.pecas { border-top: 1px solid var(--tinta); }
+.pecas button.fora { opacity: .32; }
 .pecas button { width: 100%; display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; gap: 8px; padding: 8px 6px; background: none; border: 0; border-bottom: 1px dashed var(--fio); color: var(--apagado); font: 400 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
 .pecas button small { display: block; font: italic 400 12px var(--sans); letter-spacing: 0; text-transform: none; opacity: .75; margin-top: 1px; }
 .pecas button:hover { color: var(--tinta); }
@@ -161,7 +175,7 @@ table.carimbo { border-collapse: collapse; min-width: 360px; }
   .lado { position: static; display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: start; }
   .lado svg.carro { height: 260px; }
   .lado .legenda { grid-column: 1; }
-  .pecas { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
+  .filtros { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
   .post h2 { font-size: 24px; }
   .folha { padding: 24px 20px 26px; }
   .selo th { width: 100px; }

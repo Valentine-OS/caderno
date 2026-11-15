@@ -11,6 +11,13 @@ const TIPOS = {
   projeto: { plural: 'projetos', n: '05', peca: 'cauda' },
 };
 
+// Os tipos se dividem em dois grupos: o que eu consumi e o que eu criei.
+const GRUPOS = {
+  consumido: ['curso', 'podcast', 'artigo'],
+  criado: ['escrito', 'projeto'],
+};
+const grupoDe = (tipo) => Object.keys(GRUPOS).find(g => GRUPOS[g].includes(tipo)) || null;
+
 const FONTE = new URLSearchParams(location.search).has('exemplo') ? 'feed.exemplo.json' : 'feed.json';
 let FEED = [];
 
@@ -115,17 +122,58 @@ async function carregarFeed() {
   return dados.map(limpar).filter(Boolean);
 }
 
-/* ---------- filtros: lista de peças e chamadas do jato ---------- */
+/* ---------- filtros: chave de grupo, lista de peças e chamadas do jato ---------- */
+// Dois níveis: o grupo (consumido ou criado) e o tipo. Escolher um tipo move a chave para o grupo dele.
+// O endereço guarda o mais específico: #artigos, ou #consumido, ou nada.
+let filtro = null, grupo = null;
 function filtroDoEndereco() {
   const h = decodeURIComponent(location.hash.slice(1));
-  return Object.keys(TIPOS).find(t => TIPOS[t].plural === h) || null;
+  filtro = Object.keys(TIPOS).find(t => TIPOS[t].plural === h) || null;
+  grupo = filtro ? grupoDe(filtro) : (GRUPOS[h] ? h : null);
 }
-let filtro = filtroDoEndereco();
+filtroDoEndereco();
+const hashDoFiltro = () => (filtro ? '#' + TIPOS[filtro].plural : grupo ? '#' + grupo : '');
+
 function filtrar(tipo) {
   filtro = tipo;
-  endereco(tipo ? '#' + TIPOS[tipo].plural : '');
+  if (tipo) grupo = grupoDe(tipo);
+  endereco(hashDoFiltro());
   desenhar();
 }
+function escolherGrupo(g) {
+  grupo = g || null;
+  filtro = null;
+  endereco(hashDoFiltro());
+  desenhar();
+}
+const visivel = (e) => (filtro ? e.tipo === filtro : grupo ? GRUPOS[grupo].includes(e.tipo) : true);
+
+function desenharChave() {
+  const caixa = $('chave');
+  const botoes = [...caixa.querySelectorAll('button')];
+  botoes.forEach((b, i) => {
+    const g = b.dataset.grupo || null;
+    const qtd = g ? FEED.filter(e => GRUPOS[g].includes(e.tipo)).length : FEED.length;
+    b.textContent = g || 'tudo';
+    no(b, 'sup', String(qtd));
+    b.setAttribute('aria-checked', String(g === grupo));
+    b.tabIndex = g === grupo ? 0 : -1;
+    if (g === grupo) caixa.dataset.pos = String(i);
+  });
+}
+$('chave').addEventListener('click', ev => {
+  const b = ev.target.closest('button');
+  if (b) escolherGrupo(b.dataset.grupo);
+});
+// Setas trocam de posição, como num grupo de rádio.
+$('chave').addEventListener('keydown', ev => {
+  if (!['ArrowLeft', 'ArrowRight'].includes(ev.key)) return;
+  ev.preventDefault();
+  const ordem = ['', 'consumido', 'criado'];
+  const i = ordem.indexOf(grupo || '');
+  escolherGrupo(ordem[(i + (ev.key === 'ArrowRight' ? 1 : 2)) % 3]);
+  $('chave').querySelector('[aria-checked="true"]').focus();
+});
 
 function desenharPecas() {
   const caixa = $('pecas');
@@ -136,12 +184,14 @@ function desenharPecas() {
     const meio = no(b, 'span', rotulo);
     no(meio, 'small', peca);
     no(b, 'span', String(qtd));
-    b.setAttribute('aria-pressed', String(filtro === tipo));
-    b.addEventListener('click', () => filtrar(filtro === tipo ? null : tipo));
+    b.setAttribute('aria-pressed', String(tipo ? filtro === tipo : !filtro && !grupo));
+    if (tipo && grupo && grupoDe(tipo) !== grupo) b.classList.add('fora');
+    b.addEventListener('click', () => (tipo ? filtrar(filtro === tipo ? null : tipo) : escolherGrupo(null)));
   };
   linha('00', 'tudo', 'conjunto', null, FEED.length);
   for (const t in TIPOS) linha(TIPOS[t].n, TIPOS[t].plural, TIPOS[t].peca, t, FEED.filter(e => e.tipo === t).length);
   document.querySelectorAll('.chamada').forEach(c => c.classList.toggle('ativa', c.dataset.tipo === filtro));
+  desenharChave();
 }
 document.querySelectorAll('.chamada').forEach(c => {
   c.addEventListener('click', () => filtrar(filtro === c.dataset.tipo ? null : c.dataset.tipo));
@@ -158,8 +208,13 @@ const olheiro = new IntersectionObserver(vistos => {
 function desenharFeed() {
   const feed = $('feed');
   feed.replaceChildren();
-  const visiveis = FEED.filter(e => !filtro || e.tipo === filtro).sort((a, b) => b.data.localeCompare(a.data));
-  if (!visiveis.length) { no(feed, 'div', filtro ? `Nenhum registro em ${TIPOS[filtro].plural} ainda.` : 'Nada registrado ainda.', 'vazio'); return; }
+  const visiveis = FEED.filter(visivel).sort((a, b) => b.data.localeCompare(a.data));
+  if (!visiveis.length) {
+    const msg = filtro ? `Nenhum registro em ${TIPOS[filtro].plural} ainda.`
+      : grupo ? `Nada ${grupo} registrado ainda.` : 'Nada registrado ainda.';
+    no(feed, 'div', msg, 'vazio');
+    return;
+  }
 
   const porMes = {};
   for (const e of visiveis) (porMes[e.data.slice(0, 7)] ||= []).push(e);
@@ -172,8 +227,8 @@ function desenharFeed() {
     no(cota, 'span', `${MESES[Number(chave.slice(5)) - 1]} ${chave.slice(0, 4)} · ${itens.length}`, 'rot');
     no(cota, 'span', null, 'ln b');
 
-    // Sem filtro, cada mês depois do primeiro ganha um desenho solto.
-    if (!filtro && i > 0) {
+    // Sem filtro nenhum, cada mês depois do primeiro ganha um desenho solto.
+    if (!filtro && !grupo && i > 0) {
       const d = DESENHOS[(i - 1) % DESENHOS.length];
       const fig = no(bloco, 'figure', null, `solta desenha ${d.classe || ''}`);
       fig.innerHTML = `<svg class="${d.revela}" viewBox="${d.viewBox}" aria-hidden="true"><g class="pd ${d.pd || ''}"></g>${d.extra}</svg>`;
@@ -234,7 +289,7 @@ function abrir(e) {
 }
 function arrumar() {
   document.documentElement.style.overflow = '';
-  endereco(filtro ? '#' + TIPOS[filtro].plural : '');
+  endereco(hashDoFiltro());
 }
 function fechar() { if (diario.open) diario.close(); arrumar(); }
 diario.addEventListener('close', arrumar);
@@ -260,7 +315,7 @@ addEventListener('resize', ajustarBlocos);
 function desenhar() { desenharPecas(); desenharFeed(); ajustarBlocos(); }
 window.addEventListener('hashchange', () => {
   if (location.hash.startsWith('#ler/')) { abrirDoEndereco(); return; }
-  filtro = filtroDoEndereco(); desenhar();
+  filtroDoEndereco(); desenhar();
 });
 
 // O jato fixo aparece antes do feed carregar.
