@@ -33,6 +33,12 @@ Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `
 
 Antes de cada publicação, uma GitHub Action confere o `feed.json` inteiro e gera o [RSS](https://valentine-os.github.io/caderno/feed.xml). Se algo estiver errado, como uma data impossível ou uma vírgula sobrando, nada é publicado, o site continua como estava e a Action diz qual entrada corrigir.
 
+## Registrar pela extensão
+
+Na pasta [`extension/`](extension/) há uma extensão para Chrome e navegadores parecidos. Na página do artigo, curso ou podcast que acabei de terminar, abro a extensão: ela já traz título, link e fonte, eu escolho o tipo, escrevo o que ficou e clico em Registrar. A extensão grava a entrada no `feed.json` pela API do GitHub, e a publicação segue o caminho normal.
+
+Para instalar: em `chrome://extensions`, ligue o **Modo do desenvolvedor**, clique em **Carregar sem compactação** e escolha a pasta `extension`. Na primeira abertura ela pede um token do GitHub restrito a este repositório, com permissão **Contents: Read and write**. O token fica guardado só naquele navegador.
+
 ## Rodar no computador
 
 A página precisa ser aberta por um servidor local, porque lê o `feed.json` pela rede. Qualquer servidor estático serve, por exemplo:
@@ -45,7 +51,6 @@ e depois `http://localhost:8000/`.
 
 ## Próximos passos
 
-- Uma extensão de navegador para registrar a página que estou lendo em poucos segundos.
 - Textos longos em arquivos próprios, em `escritos/`.
 
 ## Feito com IA

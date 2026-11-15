@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>caderno.</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="marca">caderno.</span>
+    <button type="button" class="link" id="ir-config" title="Configuração">config ⚙</button>
+  </header>
+
+  <!-- registrar -->
+  <form id="registro" hidden novalidate>
+    <fieldset class="tipos">
+      <legend>Tipo</legend>
+      <label><input type="radio" name="tipo" value="curso"><span>curso</span></label>
+      <label><input type="radio" name="tipo" value="podcast"><span>podcast</span></label>
+      <label><input type="radio" name="tipo" value="artigo"><span>artigo</span></label>
+      <label><input type="radio" name="tipo" value="escrito"><span>escrito</span></label>
+      <label><input type="radio" name="tipo" value="projeto"><span>projeto</span></label>
+    </fieldset>
+
+    <label class="campo">Título<input id="titulo" type="text" required></label>
+    <label class="campo">Link<input id="link" type="url" placeholder="https://…"></label>
+    <div class="dupla">
+      <label class="campo">Fonte<input id="fonte" type="text" placeholder="autor, site ou programa"></label>
+      <label class="campo">Concluído em<input id="data" type="date" required></label>
+    </div>
+    <label class="campo">O que ficou<textarea id="nota" rows="3" placeholder="uma ou duas frases"></textarea></label>
+    <label class="campo" id="campo-texto" hidden>Texto<textarea id="texto" rows="5" placeholder="parágrafos separados por uma linha em branco"></textarea></label>
+
+    <p class="aviso" id="aviso" role="alert" hidden></p>
+    <button type="submit" class="principal" id="registrar">Registrar</button>
+    <button type="button" class="link" id="limpar">limpar o formulário</button>
+  </form>
+
+  <!-- registrado -->
+  <section id="feito" hidden>
+    <p class="grande">Registrado.</p>
+    <p>Aparece no site em cerca de um minuto, depois que a conferência do GitHub passar.</p>
+    <p><a id="ver-site" target="_blank" rel="noopener">abrir o caderno ↗</a> · <a id="ver-actions" target="_blank" rel="noopener">acompanhar a publicação ↗</a></p>
+    <button type="button" class="principal" id="outro">Registrar outra coisa</button>
+  </section>
+
+  <!-- configuração -->
+  <form id="config" hidden novalidate>
+    <p class="explica">O token fica só neste navegador. Use um token do GitHub restrito ao repositório do caderno, com permissão <b>Contents: Read and write</b>.</p>
+    <label class="campo">Token do GitHub<input id="token" type="password" autocomplete="off" spellcheck="false"></label>
+    <label class="campo">Repositório<input id="repo" type="text" spellcheck="false" placeholder="dono/repositorio"></label>
+    <label class="campo">Endereço do site<input id="site" type="url" spellcheck="false"></label>
+    <p class="aviso" id="aviso-config" role="alert" hidden></p>
+    <button type="submit" class="principal" id="salvar">Salvar e testar</button>
+    <button type="button" class="link" id="voltar" hidden>voltar</button>
+  </form>
+
+  <script src="dev-mock.js"></script>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
