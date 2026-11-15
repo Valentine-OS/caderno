@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>caderno.</title>
+<meta name="description" content="O que ando estudando, lendo, ouvindo, escrevendo e construindo. Em público.">
+<link rel="alternate" type="application/rss+xml" title="caderno." href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;1,400&family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="caderno.css">
+</head>
+<body>
+<div class="moldura" aria-hidden="true"></div>
+
+<!-- pontas de seta usadas pelos desenhos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ponta" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1 L7.5 4 L0 7" fill="none" stroke="#eef4fb" stroke-width="1"/>
+    </marker>
+    <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="12" markerHeight="12" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#eef4fb"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="pagina">
+  <header>
+    <div class="marca">caderno.</div>
+    <nav><span class="mono">Folha 01 · estudo em público</span><a class="mono" href="feed.xml">RSS ↗</a></nav>
+  </header>
+
+  <div class="corpo">
+    <aside class="lado">
+      <svg class="carro desenha revela-baixo" id="carro" viewBox="256 -394 300 414" role="img" aria-label="Desenho técnico de um F-16 visto de cima, de domínio público, com cinco peças numeradas que servem de filtro do feed">
+        <g class="pd" id="jato-pd" transform="rotate(-90)"></g>
+        <g class="depois">
+          <!-- cotas -->
+          <path class="fino" d="M258 -381 H372 M258 -28 H340 M278 -118 V8 M495 -118 V8"/>
+          <line class="fino" x1="265" y1="-381" x2="265" y2="-28" marker-start="url(#ponta)" marker-end="url(#ponta)"/>
+          <text transform="translate(275 -205) rotate(-90)" text-anchor="middle">15,06 m</text>
+          <line class="fino" x1="278" y1="0" x2="495" y2="0" marker-start="url(#ponta)" marker-end="url(#ponta)"/>
+          <text x="386" y="14" text-anchor="middle">9,96 m</text>
+        </g>
+        <!-- chamadas: cada peça é um tipo do feed -->
+        <g class="chamada" data-tipo="curso"><line class="fino" x1="385" y1="-381" x2="540" y2="-372"/><circle cx="540" cy="-372" r="8"/><text x="540" y="-369">1</text></g>
+        <g class="chamada" data-tipo="podcast"><line class="fino" x1="392" y1="-283" x2="540" y2="-292"/><circle cx="540" cy="-292" r="8"/><text x="540" y="-289">2</text></g>
+        <g class="chamada" data-tipo="artigo"><line class="fino" x1="402" y1="-216" x2="540" y2="-215"/><circle cx="540" cy="-215" r="8"/><text x="540" y="-212">3</text></g>
+        <g class="chamada" data-tipo="escrito"><line class="fino" x1="463" y1="-135" x2="540" y2="-135"/><circle cx="540" cy="-135" r="8"/><text x="540" y="-132">4</text></g>
+        <g class="chamada" data-tipo="projeto"><line class="fino" x1="434" y1="-54" x2="540" y2="-55"/><circle cx="540" cy="-55" r="8"/><text x="540" y="-52">5</text></g>
+      </svg>
+      <div class="mono legenda">Fig. 01 · F-16 · vista superior</div>
+      <div class="pecas" id="pecas" role="group" aria-label="Filtrar por tipo"></div>
+    </aside>
+
+    <main id="feed" aria-live="polite"><div class="vazio">Carregando o feed…</div></main>
+  </div>
+
+  <footer>
+    <table class="carimbo">
+      <caption>caderno.</caption>
+      <tr><th>Autor</th><td>lurzzo</td></tr>
+      <tr><th>Conteúdo</th><td>estudo em público</td></tr>
+      <tr><th>Traços</th><td>USAF e NASA · domínio público</td></tr>
+      <tr><th>Revisão</th><td id="revisao">—</td></tr>
+    </table>
+  </footer>
+</div>
+
+<dialog class="diario" id="diario" aria-labelledby="diario-titulo"><div class="folha" id="folha"></div></dialog>
+
+<script src="desenhos/desenhos.js"></script>
+<script src="caderno.js"></script>
+</body>
+</html>

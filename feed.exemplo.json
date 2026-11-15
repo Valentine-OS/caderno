@@ -1,0 +1,29 @@
+[
+  { "data": "2026-11-11", "tipo": "projeto", "titulo": "caderno.", "nota": "Este site. Depois de três versões grandes demais, sobrou um feed." },
+  { "data": "2026-11-10", "tipo": "artigo", "titulo": "Local-first software", "link": "https://www.inkandswitch.com/local-first/", "fonte": "Ink & Switch", "nota": "Sincronização é o problema difícil; o resto é detalhe." },
+  { "data": "2026-11-08", "tipo": "escrito", "titulo": "Ownership, enfim", "nota": "Levou três tentativas.", "texto": [
+    "Passei duas semanas lendo sobre ownership em Rust como quem lê regra de trânsito: decorando o que não pode.",
+    "O que destravou foi parar de pensar em regras e pensar em quem limpa a mesa. Todo valor tem um dono, e o dono limpa quando sai. Emprestar é deixar alguém usar a mesa sem passar a responsabilidade da limpeza.",
+    "O compilador não é chato. Ele só pergunta, toda vez, quem vai limpar."
+  ] },
+  { "data": "2026-11-06", "tipo": "curso", "titulo": "Rustlings", "link": "https://github.com/rust-lang/rustlings", "fonte": "exercícios", "nota": "Os exercícios de lifetimes foram os únicos que precisei refazer." },
+  { "data": "2026-11-04", "tipo": "podcast", "titulo": "The Untold Story of SQLite", "link": "https://corecursive.com/066-sqlite-with-richard-hipp/", "fonte": "CoRecursive", "nota": "Um banco de dados feito para não precisar de administrador." },
+  { "data": "2026-11-02", "tipo": "artigo", "titulo": "The Log: what every software engineer should know", "fonte": "Jay Kreps", "nota": "Tabela e log são a mesma coisa vista de dois lados." },
+  { "data": "2026-10-28", "tipo": "artigo", "titulo": "Choose Boring Technology", "link": "https://boringtechnology.club/", "fonte": "Dan McKinley" },
+  { "data": "2026-10-24", "tipo": "escrito", "titulo": "O que eu queria de um tracker", "nota": "Spoiler: não era um tracker.", "texto": [
+    "Comecei querendo contar dias. Dias sem refrigerante, dias estudando, quilômetros andados.",
+    "No meio do caminho percebi que o número era a parte menos interessante. O que eu queria guardar era o que tinha lido e o que tinha ficado."
+  ] },
+  { "data": "2026-10-21", "tipo": "podcast", "titulo": "Episódio sobre CRDTs e edição colaborativa", "nota": "Finalmente entendi por que desfazer é tão difícil." },
+  { "data": "2026-10-17", "tipo": "artigo", "titulo": "How to Take Smart Notes: resumo crítico", "nota": "O método importa menos do que reler o que se escreveu." },
+  { "data": "2026-10-12", "tipo": "curso", "titulo": "Introdução a bancos de dados com SQL", "nota": "Índices deixaram de ser mágica." },
+  { "data": "2026-10-05", "tipo": "artigo", "titulo": "Notas sobre event sourcing" },
+  { "data": "2026-09-27", "tipo": "projeto", "titulo": "Overlay de stream", "nota": "Um agente que observa a sessão e sabe a hora de ficar calado." },
+  { "data": "2026-09-20", "tipo": "escrito", "titulo": "O agente que sabe a hora de calar a boca", "nota": "Inteligência nas pontas, espinha burra.", "texto": [
+    "A maioria das ideias de automação que eu tinha não era agente. Era detecção de evento mais uma regra.",
+    "Só um punhado de casos precisava mesmo de um modelo decidindo alguma coisa."
+  ] },
+  { "data": "2026-09-14", "tipo": "podcast", "titulo": "Episódio sobre arquitetura de agentes" },
+  { "data": "2026-09-09", "tipo": "artigo", "titulo": "Building effective agents", "fonte": "Anthropic", "nota": "Comece pelo fluxo mais simples que resolve." },
+  { "data": "2026-09-03", "tipo": "artigo", "titulo": "Notas sobre design de APIs" }
+]
