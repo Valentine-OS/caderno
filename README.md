@@ -2,53 +2,49 @@
 
 O que ando estudando, lendo, ouvindo, escrevendo e construindo. Em público.
 
-Site estático numa página só. Tudo o que aparece vem do `feed.json`.
+**→ [valentine-os.github.io/caderno](https://valentine-os.github.io/caderno/)**
 
-## Ver no computador
+Um feed de tudo que eu termino para aprender: cursos concluídos, podcasts, artigos, textos meus e projetos. Cada coisa entra uma vez, no dia em que acabou, com uma linha sobre o que ficou dela.
 
-A página lê o `feed.json` pela rede, então precisa de um servidor local; aberta direto do disco, ela avisa que não conseguiu ler o feed.
+A página imita uma prancha de desenho técnico: folha azul quadriculada, traço branco, cotas e um F-16 cujas peças numeradas servem de filtro. Clicar numa entrada abre a ficha dela, como o quadro de especificações no canto de um blueprint.
 
-No Claude Code, o servidor se chama `caderno-site` e serve esta pasta em `http://localhost:8139/`.
+Quer ver a página cheia antes de eu ter registrado muita coisa? Abra com dados de exemplo: [valentine-os.github.io/caderno/?exemplo](https://valentine-os.github.io/caderno/?exemplo).
 
-- `http://localhost:8139/` mostra o feed real.
-- `http://localhost:8139/?exemplo` mostra a página cheia, com os dados inventados do `feed.exemplo.json`.
+## Como funciona
 
-## Registrar algo
+Não tem servidor nem banco de dados. Tudo que aparece no site mora num único arquivo, o [`feed.json`](feed.json), e a página é HTML, CSS e JavaScript puros que leem esse arquivo no navegador. O GitHub Pages publica cada mudança em menos de um minuto.
 
-Por enquanto, à mão: acrescente uma entrada no `feed.json` e salve. A extensão de navegador vem depois.
+Para registrar algo, eu acrescento uma entrada no `feed.json`:
 
 ```json
-[
-  {
-    "data": "2026-11-15",
-    "tipo": "artigo",
-    "titulo": "Título do que foi concluído",
-    "link": "https://exemplo.com/artigo",
-    "fonte": "Autor ou site",
-    "nota": "Uma ou duas frases sobre o que ficou."
-  }
-]
+{
+  "data": "2026-11-10",
+  "tipo": "artigo",
+  "titulo": "Local-first software",
+  "link": "https://www.inkandswitch.com/local-first/",
+  "fonte": "Ink & Switch",
+  "nota": "Sincronização é o problema difícil; o resto é detalhe."
+}
 ```
 
-| Campo | Obrigatório | Regra |
-|---|---|---|
-| `data` | Sim | `AAAA-MM-DD`, o dia em que foi concluído |
-| `tipo` | Sim | `curso`, `podcast`, `artigo`, `escrito` ou `projeto` |
-| `titulo` | Sim | Texto curto |
-| `link` | Não | Endereço começando com `http` ou `https` |
-| `fonte` | Não | Autor, site ou programa |
-| `nota` | Não | O que ficou, em uma ou duas frases |
-| `texto` | Não | Lista de parágrafos, para escritos curtos |
+Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `tipo` e `titulo` são obrigatórios. Se uma entrada vier com erro, ela simplesmente não aparece, e o resto da página segue normal.
 
-Entre uma entrada e outra vai uma vírgula. Uma entrada com problema (data inválida, tipo desconhecido, título vazio) não aparece na página, e o motivo fica no console do navegador.
+## Rodar no computador
 
-## Arquivos
+A página precisa ser aberta por um servidor local, porque lê o `feed.json` pela rede. Qualquer servidor estático serve, por exemplo:
 
-| Arquivo | O que é |
-|---|---|
-| `index.html` | A página |
-| `caderno.css` | O visual blueprint |
-| `caderno.js` | Lê o feed e desenha a página |
-| `feed.json` | Todas as entradas |
-| `feed.exemplo.json` | Dados inventados, só para ver a página cheia |
-| `desenhos/` | Desenhos técnicos de domínio público (F-16 da Força Aérea americana e Saturn V da NASA, via Wikimedia Commons) |
+```bash
+python -m http.server
+```
+
+e depois `http://localhost:8000/`.
+
+## Próximos passos
+
+- Uma conferência automática do `feed.json` antes de cada publicação, e o RSS.
+- Uma extensão de navegador para registrar a página que estou lendo em poucos segundos.
+- Textos longos em arquivos próprios, em `escritos/`.
+
+## Créditos
+
+Os desenhos técnicos são de domínio público, via Wikimedia Commons: o F-16 em três vistas, da Força Aérea dos Estados Unidos, e o esquema do Saturn V, da NASA. As fontes são Barlow, Barlow Condensed e IBM Plex Mono, do Google Fonts.
