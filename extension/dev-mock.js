@@ -10,7 +10,7 @@
 
   const p = new URLSearchParams(location.search);
   const memoria = {};
-  if (p.has('config')) memoria.config = { token: 'teste', repo: 'Valentine-OS/caderno', site: 'https://valentine-os.github.io/caderno/' };
+  if (p.has('config')) memoria.config = { token: 'teste', repo: 'Valentine-OS/caderno', site: 'https://lurzzo.com/' };
 
   const estado = {
     feed: [{ data: '2026-11-10', tipo: 'artigo', titulo: 'Local-first software', link: 'https://www.inkandswitch.com/local-first/' }],

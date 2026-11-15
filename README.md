@@ -4,13 +4,13 @@
 
 O que ando estudando, lendo, ouvindo, escrevendo e construindo. Em público.
 
-**→ [valentine-os.github.io/caderno](https://valentine-os.github.io/caderno/)**
+**→ [lurzzo.com](https://lurzzo.com/)**
 
 Um feed de tudo que eu termino para aprender: cursos concluídos, podcasts, artigos, textos meus e projetos. Cada coisa entra uma vez, no dia em que acabou, com uma linha sobre o que ficou dela.
 
 A página imita uma prancha de desenho técnico: folha azul quadriculada, traço branco, cotas e um F-16 cujas peças numeradas servem de filtro. Clicar numa entrada abre a ficha dela, como o quadro de especificações no canto de um blueprint.
 
-Quer ver a página cheia antes de eu ter registrado muita coisa? Abra com dados de exemplo: [valentine-os.github.io/caderno/?exemplo](https://valentine-os.github.io/caderno/?exemplo).
+Quer ver a página cheia antes de eu ter registrado muita coisa? Abra com dados de exemplo: [lurzzo.com/?exemplo](https://lurzzo.com/?exemplo).
 
 ## Como funciona
 
@@ -31,7 +31,7 @@ Para registrar algo, eu acrescento uma entrada no `feed.json`:
 
 Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `tipo` e `titulo` são obrigatórios.
 
-Antes de cada publicação, uma GitHub Action confere o `feed.json` inteiro e gera o [RSS](https://valentine-os.github.io/caderno/feed.xml). Se algo estiver errado, como uma data impossível ou uma vírgula sobrando, nada é publicado, o site continua como estava e a Action diz qual entrada corrigir.
+Antes de cada publicação, uma GitHub Action confere o `feed.json` inteiro e gera o [RSS](https://lurzzo.com/feed.xml). Se algo estiver errado, como uma data impossível ou uma vírgula sobrando, nada é publicado, o site continua como estava e a Action diz qual entrada corrigir.
 
 ## Escritos longos
 

@@ -2,7 +2,7 @@ import { hoje, montarEntrada, conferirEntrada, repetida, posicaoDe } from './reg
 import { atualizarFeed, lerFeed } from './github.js';
 
 const $ = (id) => document.getElementById(id);
-const PADRAO = { token: '', repo: 'Valentine-OS/caderno', site: 'https://valentine-os.github.io/caderno/' };
+const PADRAO = { token: '', repo: 'Valentine-OS/caderno', site: 'https://lurzzo.com/' };
 const CAMPOS = ['titulo', 'link', 'fonte', 'data', 'nota', 'texto'];
 const QUANTOS_RECENTES = 15;
 

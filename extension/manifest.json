@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "caderno.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Registra no caderno o que foi concluído: a página aberta vira uma entrada do feed.json.",
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": ["https://api.github.com/*"],

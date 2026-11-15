@@ -36,6 +36,8 @@ jobs:
         run: python3 tools/conferir.py _site/feed.json
 
       - name: Montar o site e gerar o RSS
+        env:
+          SITE_URL: https://lurzzo.com/
         run: |
           cp index.html caderno.css caderno.js feed.exemplo.json .nojekyll _site/
           cp -r desenhos _site/
