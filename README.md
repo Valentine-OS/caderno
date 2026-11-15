@@ -29,7 +29,9 @@ Para registrar algo, eu acrescento uma entrada no `feed.json`:
 }
 ```
 
-Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `tipo` e `titulo` são obrigatórios. Se uma entrada vier com erro, ela simplesmente não aparece, e o resto da página segue normal.
+Os tipos são `curso`, `podcast`, `artigo`, `escrito` e `projeto`. Só `data`, `tipo` e `titulo` são obrigatórios.
+
+Antes de cada publicação, uma GitHub Action confere o `feed.json` inteiro e gera o [RSS](https://valentine-os.github.io/caderno/feed.xml). Se algo estiver errado, como uma data impossível ou uma vírgula sobrando, nada é publicado, o site continua como estava e a Action diz qual entrada corrigir.
 
 ## Rodar no computador
 
@@ -43,7 +45,6 @@ e depois `http://localhost:8000/`.
 
 ## Próximos passos
 
-- Uma conferência automática do `feed.json` antes de cada publicação, e o RSS.
 - Uma extensão de navegador para registrar a página que estou lendo em poucos segundos.
 - Textos longos em arquivos próprios, em `escritos/`.
 
