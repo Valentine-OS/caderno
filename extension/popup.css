@@ -55,5 +55,19 @@ button.principal { display: block; width: 100%; margin: 6px 0 10px; padding: 10p
 button.principal:hover { background: transparent; color: var(--tinta); }
 button.principal:disabled { opacity: .5; cursor: wait; }
 
+header nav { display: flex; gap: 12px; }
+header nav button.atual { color: var(--tinta); text-decoration: underline; text-underline-offset: 4px; }
+
+.ok { margin: 4px 0 10px; padding: 8px 10px; border: 1px solid var(--tinta); font-size: 13px; }
+code { font: 400 12px var(--mono); }
+
+.lista { list-style: none; margin: 0 0 12px; padding: 0; border-top: 1px solid var(--tinta); max-height: 360px; overflow-y: auto; }
+.lista li { padding: 9px 0; border-bottom: 1px dashed var(--fio); }
+.lista .rotulo { font: 400 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--apagado); }
+.lista .titulo { font: 500 17px/1.2 var(--cond); margin: 2px 0 6px; }
+.lista .acoes { display: flex; gap: 14px; }
+.lista .acoes button.perigo { color: var(--erro); }
+.lista .vazia { color: var(--apagado); font-size: 13px; border: 0; }
+
 #feito p { margin: 0 0 10px; }
 #feito .grande { font: 600 30px/1 var(--cond); margin: 6px 0 12px; }

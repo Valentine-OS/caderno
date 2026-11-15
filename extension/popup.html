@@ -8,7 +8,11 @@
 <body>
   <header>
     <span class="marca">caderno.</span>
-    <button type="button" class="link" id="ir-config" title="Configuração">config ⚙</button>
+    <nav>
+      <button type="button" class="link" id="ir-registro">registrar</button>
+      <button type="button" class="link" id="ir-recentes">recentes</button>
+      <button type="button" class="link" id="ir-config" title="Configuração">config ⚙</button>
+    </nav>
   </header>
 
   <!-- registrar -->
@@ -34,12 +38,22 @@
     <p class="aviso" id="aviso" role="alert" hidden></p>
     <button type="submit" class="principal" id="registrar">Registrar</button>
     <button type="button" class="link" id="limpar">limpar o formulário</button>
+    <button type="button" class="link" id="cancelar-edicao" hidden>cancelar a edição</button>
   </form>
+
+  <!-- recentes: editar e excluir -->
+  <section id="recentes" hidden>
+    <p class="explica">Os últimos registros do feed. Escritos longos ficam em <code>escritos/</code> e se editam pelo GitHub.</p>
+    <p class="aviso" id="aviso-recentes" role="alert" hidden></p>
+    <p class="ok" id="ok-recentes" role="status" hidden></p>
+    <ul class="lista" id="lista-recentes"></ul>
+    <button type="button" class="link" id="recarregar">recarregar a lista</button>
+  </section>
 
   <!-- registrado -->
   <section id="feito" hidden>
-    <p class="grande">Registrado.</p>
-    <p>Aparece no site em cerca de um minuto, depois que a conferência do GitHub passar.</p>
+    <p class="grande" id="feito-titulo">Registrado.</p>
+    <p id="feito-texto">Aparece no site em cerca de um minuto, depois que a conferência do GitHub passar.</p>
     <p><a id="ver-site" target="_blank" rel="noopener">abrir o caderno ↗</a> · <a id="ver-actions" target="_blank" rel="noopener">acompanhar a publicação ↗</a></p>
     <button type="button" class="principal" id="outro">Registrar outra coisa</button>
   </section>

@@ -55,6 +55,8 @@ Na publicação, eles entram no feed como escritos e abrem inteiros na ficha. O 
 
 Na pasta [`extension/`](extension/) há uma extensão para Chrome e navegadores parecidos. Na página do artigo, curso ou podcast que acabei de terminar, abro a extensão: ela já traz título, link e fonte, eu escolho o tipo, escrevo o que ficou e clico em Registrar. A extensão grava a entrada no `feed.json` pela API do GitHub, e a publicação segue o caminho normal.
 
+A aba **recentes** da extensão lista os últimos registros, com **editar** e **excluir**. Excluir pede um segundo toque. A entrada some do site e do RSS, mas continua no histórico do repositório, que é público.
+
 Para instalar: em `chrome://extensions`, ligue o **Modo do desenvolvedor**, clique em **Carregar sem compactação** e escolha a pasta `extension`. Na primeira abertura ela pede um token do GitHub restrito a este repositório, com permissão **Contents: Read and write**. O token fica guardado só naquele navegador.
 
 ## Rodar no computador

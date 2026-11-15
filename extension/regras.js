@@ -37,8 +37,15 @@ export function conferirEntrada(e) {
   return erros;
 }
 
-/** Mesma regra de duplicata do conferir.py: mesmo dia e mesmo link (ou título, sem link). */
-export function repetida(feed, e) {
+/** Mesma regra de duplicata do conferir.py: mesmo dia e mesmo link (ou título, sem link).
+ *  `ignorar` é a posição da entrada que está sendo editada, que não conta como repetida de si mesma. */
+export function repetida(feed, e, ignorar = -1) {
   const alvo = (e.link || e.titulo).trim().toLowerCase();
-  return feed.find(x => x && x.data === e.data && String(x.link || x.titulo || '').trim().toLowerCase() === alvo);
+  return feed.find((x, i) => i !== ignorar && x && x.data === e.data && String(x.link || x.titulo || '').trim().toLowerCase() === alvo);
+}
+
+/** Posição no feed da entrada exatamente igual à que foi lida antes; -1 se ela mudou ou sumiu. */
+export function posicaoDe(feed, original) {
+  const alvo = JSON.stringify(original);
+  return feed.findIndex(x => JSON.stringify(x) === alvo);
 }
