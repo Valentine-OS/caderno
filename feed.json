@@ -2,6 +2,13 @@
   {
     "data": "2026-11-25",
     "tipo": "artigo",
+    "titulo": "System Design para Aplicações com IA",
+    "link": "https://www.youtube.com/watch?v=2Ls_uc0fo-Y",
+    "fonte": "Augusto Galego"
+  },
+  {
+    "data": "2026-11-25",
+    "tipo": "artigo",
     "titulo": "Obsidian in 24 Minutes",
     "link": "https://www.youtube.com/watch?v=4Hvkv_I8QDE",
     "fonte": "Tina Huang"
