@@ -51,11 +51,21 @@ Segundo parágrafo, depois de uma linha em branco.
 
 Na publicação, eles entram no feed como escritos e abrem inteiros na ficha. O [`_modelo.md`](escritos/_modelo.md) está lá para copiar; arquivos que começam com `_` não vão para o site. Por enquanto o texto é só parágrafos: negrito, itálico e links em Markdown aparecem como foram escritos.
 
+## Hangar
+
+Vira e mexe aparece uma ferramenta nova que eu quero testar, e o dia passa. O [hangar](https://lurzzo.com/#hangar) guarda essas ferramentas, com o link do site, de um artigo ou de um vídeo sobre ela e uma linha sobre por que quero testar.
+
+Ele fica à parte do feed, no link **Hangar** do cabeçalho: não entra nas contagens, nos filtros nem no RSS, porque o caderno só mostra o que já foi feito. Quando uso uma ferramenta de verdade, ela sai do hangar e vira uma entrada do caderno, como artigo ou projeto. O que fica parado há 30 dias ou mais começa a esmaecer.
+
+Os itens moram no [`hangar.json`](hangar.json), com `data` (quando guardei), `titulo` e, opcionais, `link`, `fonte` e `nota`.
+
 ## Registrar pela extensão
 
 Na pasta [`extension/`](extension/) há uma extensão para Chrome e navegadores parecidos. Na página do artigo, curso ou podcast que acabei de terminar, abro a extensão: ela já traz título, link e fonte, eu escolho o tipo, escrevo o que ficou e clico em Registrar. A extensão grava a entrada no `feed.json` pela API do GitHub, e a publicação segue o caminho normal.
 
-A aba **recentes** da extensão lista os últimos registros, com **editar** e **excluir**. Excluir pede um segundo toque. A entrada some do site e do RSS, mas continua no histórico do repositório, que é público.
+Ao lado de Registrar, o botão **Guardar no hangar** manda a página aberta para o hangar. Na aba **recentes**, cada item do hangar tem **usei**, que abre o registro já preenchido e tira o item do hangar ao registrar, e **descartar**.
+
+A aba **recentes** da extensão lista também os últimos registros, com **editar** e **excluir**. Excluir pede um segundo toque. A entrada some do site e do RSS, mas continua no histórico do repositório, que é público.
 
 Para instalar: em `chrome://extensions`, ligue o **Modo do desenvolvedor**, clique em **Carregar sem compactação** e escolha a pasta `extension`. Na primeira abertura ela pede um token do GitHub restrito a este repositório, com permissão **Contents: Read and write**. O token fica guardado só naquele navegador.
 
