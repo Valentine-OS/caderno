@@ -1,6 +1,12 @@
 [
   {
     "data": "2026-11-26",
+    "titulo": "Argo CD - Declarative GitOps CD for Kubernetes",
+    "link": "https://argo-cd.readthedocs.io/en/stable/",
+    "fonte": "argo-cd.readthedocs.io"
+  },
+  {
+    "data": "2026-11-26",
     "titulo": "Huginn — Your AI coding team",
     "link": "https://huginn.sh/",
     "fonte": "huginn.sh"
