@@ -18,7 +18,10 @@ const GRUPOS = {
 };
 const grupoDe = (tipo) => Object.keys(GRUPOS).find(g => GRUPOS[g].includes(tipo)) || null;
 
-const FONTE = new URLSearchParams(location.search).has('exemplo') ? 'feed.exemplo.json' : 'feed.json';
+const EXEMPLO = new URLSearchParams(location.search).has('exemplo');
+const FONTE = EXEMPLO ? 'feed.exemplo.json' : 'feed.json';
+const FONTE_HANGAR = EXEMPLO ? 'hangar.exemplo.json' : 'hangar.json';
+let HANGAR = [];
 let FEED = [];
 
 /* ---------- desenhos soltos ---------- */
@@ -251,6 +254,75 @@ function desenharFeed() {
   });
 }
 
+/* ---------- o hangar: ferramentas guardadas para testar ---------- */
+// Fica à parte do feed: não entra nas contagens, nos filtros nem no RSS.
+// Um item é { data, titulo, link?, fonte?, nota? }, com a data em que foi guardado.
+const DIAS_DE_POEIRA = 30;
+
+function limparItemHangar(bruto, i) {
+  const ok = bruto && typeof bruto === 'object' && dataValida(bruto.data) && typeof bruto.titulo === 'string' && bruto.titulo.trim();
+  if (!ok) { console.warn(`caderno: item ${i} do hangar ignorado`, bruto); return null; }
+  const texto = (v) => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
+  const item = { data: bruto.data, titulo: bruto.titulo.trim(), fonte: texto(bruto.fonte), nota: texto(bruto.nota) };
+  if (typeof bruto.link === 'string' && /^https?:\/\//i.test(bruto.link)) item.link = bruto.link;
+  return item;
+}
+
+async function carregarHangar() {
+  try {
+    const r = await fetch(FONTE_HANGAR, { cache: 'no-cache' });
+    if (!r.ok) return [];
+    const dados = await r.json();
+    return Array.isArray(dados) ? dados.map(limparItemHangar).filter(Boolean) : [];
+  } catch {
+    return [];
+  }
+}
+
+function diasDesde(iso) {
+  const [a, m, d] = iso.split('-').map(Number);
+  const hoje = new Date();
+  return Math.max(0, Math.round((Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) - Date.UTC(a, m - 1, d)) / 864e5));
+}
+const haQuanto = (n) => (n === 0 ? 'guardado hoje' : n === 1 ? 'guardado ontem' : `guardado há ${n} dias`);
+
+const hangar = $('hangar'), folhaHangar = $('folha-hangar');
+
+function abrirHangar() {
+  folhaHangar.replaceChildren();
+  const topo = no(folhaHangar, 'div', null, 'topo');
+  no(topo, 'div', `Hangar · ${HANGAR.length}`, 'mono');
+  no(topo, 'button', 'fechar ✕', 'fechar').addEventListener('click', fecharHangar);
+  no(folhaHangar, 'h2', 'Esperando o primeiro voo').id = 'hangar-titulo';
+  no(folhaHangar, 'p', 'Ferramentas que guardei para testar. Quando uma for usada de verdade, ela sai daqui e vira uma entrada do caderno.', 'explica');
+
+  const lista = no(folhaHangar, 'ul', null, 'estante');
+  if (!HANGAR.length) no(lista, 'li', 'Nada no hangar agora.', 'vazia');
+  for (const item of [...HANGAR].sort((a, b) => a.data.localeCompare(b.data))) {
+    const dias = diasDesde(item.data);
+    const li = no(lista, 'li', null, dias >= DIAS_DE_POEIRA ? 'poeira' : null);
+    no(li, 'div', [haQuanto(dias), item.fonte].filter(Boolean).join(' · '), 'mono');
+    const nome = no(li, 'div', null, 'nome');
+    if (item.link) { const a = no(nome, 'a', `${item.titulo} ↗`); a.href = item.link; a.target = '_blank'; a.rel = 'noopener'; }
+    else nome.append(item.titulo);
+    if (item.nota) no(li, 'p', item.nota);
+  }
+
+  endereco('#hangar');
+  document.documentElement.style.overflow = 'hidden';
+  if (!hangar.open) hangar.showModal();
+  hangar.scrollTop = 0;
+}
+function fecharHangar() { if (hangar.open) hangar.close(); arrumar(); }
+hangar.addEventListener('close', arrumar);
+hangar.addEventListener('click', ev => { if (ev.target === hangar) fecharHangar(); });
+$('abrir-hangar').addEventListener('click', abrirHangar);
+
+function mostrarHangarNoCabecalho() {
+  $('hangar-n').textContent = String(HANGAR.length);
+  $('abrir-hangar').hidden = false;
+}
+
 /* ---------- a folha de diário ---------- */
 const diario = $('diario'), folha = $('folha');
 
@@ -315,6 +387,7 @@ addEventListener('resize', ajustarBlocos);
 function desenhar() { desenharPecas(); desenharFeed(); ajustarBlocos(); }
 window.addEventListener('hashchange', () => {
   if (location.hash.startsWith('#ler/')) { abrirDoEndereco(); return; }
+  if (location.hash === '#hangar') { abrirHangar(); return; }
   filtroDoEndereco(); desenhar();
 });
 
@@ -331,6 +404,12 @@ carregarFeed()
     $('revisao').textContent = ultima || '—';
     desenhar();
     abrirDoEndereco();
+  })
+  .then(carregarHangar)
+  .then(itens => {
+    HANGAR = itens || [];
+    mostrarHangarNoCabecalho();
+    if (location.hash === '#hangar') abrirHangar();
   })
   .catch(erro => {
     console.error('caderno:', erro);

@@ -1,0 +1,5 @@
+[
+  { "data": "2026-11-24", "titulo": "Zed", "link": "https://zed.dev/", "fonte": "zed.dev", "nota": "Editor rápido com IA embutida; testar num projeto pequeno." },
+  { "data": "2026-11-10", "titulo": "uv", "link": "https://docs.astral.sh/uv/", "fonte": "Astral", "nota": "Dizem que substitui pip e venv de uma vez." },
+  { "data": "2026-10-12", "titulo": "Bruno", "link": "https://www.usebruno.com/", "fonte": "usebruno.com", "nota": "Cliente de API que guarda tudo em arquivos de texto." }
+]

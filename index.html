@@ -29,7 +29,7 @@
 <div class="pagina">
   <header>
     <div class="marca">caderno.</div>
-    <nav><span class="mono">Folha 01 · estudo em público</span><a class="mono" href="feed.xml">RSS ↗</a></nav>
+    <nav><span class="mono">Folha 01 · estudo em público</span><button type="button" class="mono hangar-link" id="abrir-hangar" hidden>Hangar · <span id="hangar-n">0</span></button><a class="mono" href="feed.xml">RSS ↗</a></nav>
   </header>
 
   <div class="corpo">
@@ -81,6 +81,7 @@
 </div>
 
 <dialog class="diario" id="diario" aria-labelledby="diario-titulo"><div class="folha" id="folha"></div></dialog>
+<dialog class="diario" id="hangar" aria-labelledby="hangar-titulo"><div class="folha" id="folha-hangar"></div></dialog>
 
 <script src="desenhos/desenhos.js"></script>
 <script src="caderno.js"></script>

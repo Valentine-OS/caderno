@@ -69,5 +69,11 @@ code { font: 400 12px var(--mono); }
 .lista .acoes button.perigo { color: var(--erro); }
 .lista .vazia { color: var(--apagado); font-size: 13px; border: 0; }
 
+button.secundario { display: block; width: 100%; margin: 0 0 10px; padding: 8px; border: 1px dashed var(--tinta); background: transparent; color: var(--tinta); font: 400 10.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+button.secundario:hover { border-style: solid; }
+button.secundario:disabled { opacity: .5; cursor: wait; }
+h3.secao { margin: 18px 0 4px; font: 600 16px var(--cond); letter-spacing: .14em; text-transform: uppercase; }
+.lista li.poeira .titulo { opacity: .6; }
+
 #feito p { margin: 0 0 10px; }
 #feito .grande { font: 600 30px/1 var(--cond); margin: 6px 0 12px; }

@@ -29,6 +29,9 @@ jobs:
       - name: Conferir o feed.json
         run: python3 tools/conferir.py feed.json
 
+      - name: Conferir o hangar.json
+        run: python3 tools/conferir_hangar.py hangar.json
+
       - name: Juntar os escritos longos
         run: python3 tools/juntar_escritos.py feed.json escritos _site/feed.json
 
@@ -39,7 +42,7 @@ jobs:
         env:
           SITE_URL: https://lurzzo.com/
         run: |
-          cp index.html caderno.css caderno.js feed.exemplo.json .nojekyll _site/
+          cp index.html caderno.css caderno.js feed.exemplo.json hangar.json hangar.exemplo.json .nojekyll _site/
           cp -r desenhos _site/
           python3 tools/gerar_rss.py _site/feed.json _site/feed.xml
 

@@ -160,6 +160,19 @@ table.selo { width: 100%; border-collapse: collapse; margin-top: 22px; }
 .folha .original:hover { background: var(--tinta); color: var(--azul); }
 .folha .rev { margin-top: 26px; padding-top: 10px; border-top: 1px dashed var(--fio); }
 
+/* hangar: ferramentas guardadas para testar, à parte do feed */
+.hangar-link { background: none; border: 0; padding: 0; cursor: pointer; border-bottom: 1px dashed var(--fio); }
+.hangar-link:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+.folha .explica { margin: 14px 0 0; color: var(--apagado); font-size: 15px; }
+.estante { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--tinta); }
+.estante li { padding: 14px 0; border-bottom: 1px dashed var(--fio); }
+.estante .nome { font: 600 24px/1.1 var(--cond); }
+.estante .nome a { text-decoration: none; }
+.estante .nome a:hover { text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 5px; }
+.estante p { margin: 4px 0 0; color: var(--apagado); font-size: 15px; }
+.estante .poeira { opacity: .55; }
+.estante .vazia { color: var(--apagado); font: 400 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+
 /* selo do rodapé */
 footer { margin-top: 72px; display: flex; justify-content: flex-end; }
 table.carimbo { border-collapse: collapse; min-width: 360px; }

@@ -44,6 +44,30 @@ export function repetida(feed, e, ignorar = -1) {
   return feed.find((x, i) => i !== ignorar && x && x.data === e.data && String(x.link || x.titulo || '').trim().toLowerCase() === alvo);
 }
 
+/* ---------- hangar: as mesmas regras do tools/conferir_hangar.py ---------- */
+
+/** Monta o item do hangar a partir do formulário: só título, link, fonte e nota, com a data de hoje. */
+export function montarItemHangar({ titulo, link, fonte, nota }) {
+  const item = { data: hoje(), titulo: (titulo || '').trim() };
+  if (link && link.trim()) item.link = link.trim();
+  if (fonte && fonte.trim()) item.fonte = fonte.trim();
+  if (nota && nota.trim()) item.nota = nota.trim();
+  return item;
+}
+
+export function conferirItemHangar(item) {
+  const erros = [];
+  if (!item.titulo) erros.push('O título não pode ficar vazio.');
+  if (item.link && !/^https?:\/\//i.test(item.link)) erros.push('O link precisa começar com http:// ou https://.');
+  return erros;
+}
+
+/** No hangar a mesma ferramenta não entra duas vezes, em qualquer data. */
+export function jaNoHangar(hangar, item) {
+  const alvo = (item.link || item.titulo).trim().toLowerCase();
+  return hangar.find(x => x && String(x.link || x.titulo || '').trim().toLowerCase() === alvo);
+}
+
 /** Posição no feed da entrada exatamente igual à que foi lida antes; -1 se ela mudou ou sumiu. */
 export function posicaoDe(feed, original) {
   const alvo = JSON.stringify(original);
