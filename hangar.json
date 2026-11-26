@@ -1,6 +1,12 @@
 [
   {
     "data": "2026-11-26",
+    "titulo": "OpenBot: uma equipe de agentes de IA no seu computador",
+    "link": "https://openbot.run/",
+    "fonte": "OpenBot"
+  },
+  {
+    "data": "2026-11-26",
     "titulo": "Docker Sandboxes | Sandboxes for Coding Agents",
     "link": "https://www.docker.com/products/docker-sandboxes/",
     "fonte": "Docker"
