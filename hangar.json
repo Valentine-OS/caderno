@@ -1,6 +1,12 @@
 [
   {
     "data": "2026-11-26",
+    "titulo": "ai-memory",
+    "link": "https://aimemory.sh/pt-br/",
+    "fonte": "Fabio Akita"
+  },
+  {
+    "data": "2026-11-26",
     "titulo": "Apache KIE (incubating)",
     "link": "https://kie.apache.org/",
     "fonte": "kie.apache.org"
