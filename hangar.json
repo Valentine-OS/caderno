@@ -1,6 +1,12 @@
 [
   {
     "data": "2026-11-26",
+    "titulo": "Orbit by coolLabs: tasks, docs and chat in one open-source workspace",
+    "link": "https://orbit.so/",
+    "fonte": "Orbit"
+  },
+  {
+    "data": "2026-11-26",
     "titulo": "Argo CD - Declarative GitOps CD for Kubernetes",
     "link": "https://argo-cd.readthedocs.io/en/stable/",
     "fonte": "argo-cd.readthedocs.io"
