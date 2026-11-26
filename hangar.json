@@ -1,6 +1,12 @@
 [
   {
     "data": "2026-11-26",
+    "titulo": "Apache KIE (incubating)",
+    "link": "https://kie.apache.org/",
+    "fonte": "kie.apache.org"
+  },
+  {
+    "data": "2026-11-26",
     "titulo": "Orbit by coolLabs: tasks, docs and chat in one open-source workspace",
     "link": "https://orbit.so/",
     "fonte": "Orbit"
