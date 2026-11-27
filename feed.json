@@ -1,5 +1,12 @@
 [
   {
+    "data": "2026-11-27",
+    "tipo": "artigo",
+    "titulo": "Zero data retention with Enterprise Frontier Safeguards is now in beta",
+    "link": "https://claude.com/resources/articles/zero-data-retention-with-enterprise-frontier-safeguards",
+    "fonte": "Claude"
+  },
+  {
     "data": "2026-11-25",
     "tipo": "artigo",
     "titulo": "System Design para Aplicações com IA",
